@@ -28,10 +28,9 @@ def sender():
     li_right.start()
 
     li_left = leap_interface_bimanual.Runner()
-    li_left.listener.hand_selected=1
+    li_left.listener.hand_selected=1 #this selects the left hand
     li_left.setDaemon(True)
     li_left.start()
-    # pub     = rospy.Publisher('leapmotion/raw',leap)
     pub_right   = rospy.Publisher('leapmotion_right/data',leapros, queue_size=2)
     pub_left   =  rospy.Publisher('leapmotion_left/data',leapros, queue_size=2)
     rospy.init_node(NODENAME)
@@ -86,7 +85,7 @@ def sender():
         msg_left.normal.z = hand_normal_left[2]
         msg_left.palmpos.x = hand_palm_pos_left[0]
         msg_left.palmpos.y = hand_palm_pos_left[1]
-        msg_left.palmpos.z = hand_palm_posleft_[2]
+        msg_left.palmpos.z = hand_palm_pos_left[2]
         msg_left.ypr.x = hand_yaw_left
         msg_left.ypr.y = hand_pitch_left
         msg_left.ypr.z = hand_roll_left
