@@ -75,10 +75,10 @@ class LeapInterface(Leap.Listener):
         self.fingerNames = ['thumb', 'index', 'middle', 'ring', 'pinky']
         for fingerName in self.fingerNames:
             setattr(self, fingerName, LeapFinger())
-        print "Initialized Leap Motion Device"
+        print("Initialized Leap Motion Device")
 
     def on_connect(self, controller):
-        print "Connected to Leap Motion Controller"
+        print("Connected to Leap Motion Controller")
 
         # Enable gestures
         controller.enable_gesture(Leap.Gesture.TYPE_CIRCLE);
@@ -88,17 +88,17 @@ class LeapInterface(Leap.Listener):
 
     def on_disconnect(self, controller):
         # Note: not dispatched when running in a debugger.
-        print "Disconnected Leap Motion"
+        print("Disconnected Leap Motion")
 
     def on_exit(self, controller):
-        print "Exited Leap Motion Controller"
+        print("Exited Leap Motion Controller")
 
     def on_frame(self, controller):
         # Get the most recent frame and report some basic information
         frame = controller.frame()
 
-        print "Frame id: %d, timestamp: %d, hands: %d, fingers: %d, tools: %d, gestures: %d" % (
-              frame.id, frame.timestamp, len(frame.hands), len(frame.fingers), len(frame.tools), len(frame.gestures()))
+        # print ("Frame id: %d, timestamp: %d, hands: %d, fingers: %d, tools: %d, gestures: %d" % 
+        #       frame.id, frame.timestamp, len(frame.hands), len(frame.fingers), len(frame.tools), len(frame.gestures()))
 
         if not frame.hands.is_empty: #recently changed in API
             # Get the first hand
@@ -152,12 +152,12 @@ class LeapInterface(Leap.Listener):
             self.hand_palm_pos[0]  = pos.x
             self.hand_palm_pos[1]  = pos.y
             self.hand_palm_pos[2]  = pos.z
-            self.hand_pitch        = direction.pitch * Leap.RAD_TO_DEG
-            self.hand_yaw          = normal.yaw * Leap.RAD_TO_DEG
-            self.hand_roll         = direction.roll * Leap.RAD_TO_DEG
+            self.hand_pitch        = direction.pitch #* Leap.RAD_TO_DEG
+            self.hand_yaw          = normal.yaw #* Leap.RAD_TO_DEG
+            self.hand_roll         = direction.roll #* Leap.RAD_TO_DEG
 
             # Calculate the hand's pitch, roll, and yaw angles
-            print "Hand pitch: %f degrees, roll: %f degrees, yaw: %f degrees" % (self.hand_pitch, self.hand_roll, self.hand_yaw)
+            # print "Hand pitch: %f degrees, roll: %f degrees, yaw: %f degrees" % (self.hand_pitch, self.hand_roll, self.hand_yaw)
 
             '''
             # Gestures

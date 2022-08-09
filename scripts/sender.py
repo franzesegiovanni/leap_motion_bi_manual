@@ -12,6 +12,11 @@ import leap_interface
 from leap_motion.msg import leap
 from leap_motion.msg import leapros
 
+import sys
+sys.path.append("/usr/lib/Leap")
+sys.path.append("/home/zheyu/LeapSDK/lib/x86")
+sys.path.append("/home/zheyu/LeapSDK/lib")
+
 FREQUENCY_ROSTOPIC_DEFAULT = 0.01
 NODENAME = 'leap_pub'
 PARAMNAME_FREQ = 'freq'
