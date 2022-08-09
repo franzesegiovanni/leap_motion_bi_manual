@@ -101,7 +101,7 @@ class LeapInterface(Leap.Listener):
         print "Frame id: %d, timestamp: %d, hands: %d, fingers: %d, tools: %d, gestures: %d" % (
               frame.id, frame.timestamp, len(frame.hands), len(frame.fingers), len(frame.tools), len(frame.gestures()))
 
-        if not frame.hands[self.hand_selected].is_empty: #recently changed in API
+        if not frame.hands[self.hand_selected]: #recently changed in API
 
             self.hand = frame.hands[self.hand_selected]
 
